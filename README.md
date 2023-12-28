@@ -6,7 +6,7 @@ Because it isn't as fun as making your own calculator.
 
 ## Usage
 Compile command:
-g++ -Wall main.cpp -lSDL2 -o ssCalc
+g++ -Wall main.cpp window.cpp -lSDL2 -o ssCalc
 
 Run command:
 ./ssCalc

@@ -3,50 +3,82 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
+#include <cstring>
+#include "window.h"
 
 #define PI 3.14159265
 
 
 int main () {
-	SDL_Window *window;
-	SDL_Init(SDL_INIT_EVERYTHING);
-	
-	window = SDL_CreateWindow(
-		"ssCalc",
-		SDL_WINDOWPOS_CENTERED,
-		SDL_WINDOWPOS_CENTERED,
-		640,
-		480,
-		SDL_WINDOW_OPENGL
-	);
-	
-	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
-
-	
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	calcWindow myWindow(640, 480);
 	
 	std::vector<SDL_Point> v;
 	
-	for (int iterations = 1; iterations < 500; iterations++) { 
+	for (int iterations = 1; iterations < 10000000; iterations++) {
+		int i = 0;
+	}
+	
+	for (int iterations = 1; iterations < 300; iterations++) { 
 		v.clear();
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-		SDL_RenderClear(renderer);
-		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+		
+		// Clear frame
+		myWindow.clearFrame();
+		
 		for (int x = 0; x < 640; x++) {
 			v.emplace_back();
 			v[v.size() - 1].x = x;
 			v[v.size() - 1].y = (240 + (2*sin((PI*x + iterations) / (20)))*(100*sin((PI*x + iterations) / 50)));
 		}
-		SDL_RenderDrawLines(renderer, v.data(), v.size());
-		SDL_RenderPresent(renderer);
+		
+		// Render curve
+		myWindow.renderCurve(v);
+		
+		// Present frame
+		myWindow.presentFrame();
+		
 		SDL_Delay(10);
 	}
 	
+	myWindow.resizeWindow(1000, 200);
+	
+	for (int iterations = 1; iterations < 300; iterations++) { 
+		v.clear();
+		
+		// Clear frame
+		myWindow.clearFrame();
+		
+		for (int x = 0; x < 1000; x++) {
+			v.emplace_back();
+			v[v.size() - 1].x = x;
+			v[v.size() - 1].y = (240 + (2*sin((PI*x + iterations) / (20)))*(100*sin((PI*x + iterations) / 50)));
+		}
+		
+		// Render curve
+		myWindow.renderCurve(v);
+		
+		// Present frame
+		myWindow.presentFrame();
+		
+		SDL_Delay(10);
+	}
+	
+	SDL_Delay(1000);
+	
+	myWindow.resizeWindow(1000, 1000);
+	
+	SDL_Delay(1000);
+	
+	myWindow.resizeWindow(640, 1000);
+	
+	SDL_Delay(1000);
+	
+	myWindow.resizeWindow(1000, 1000);
+	
+	SDL_Delay(1000);
+	
 	// Clean up
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
+	myWindow.quitWindow();
+	
 	SDL_Quit();
 	
 	return 0;
