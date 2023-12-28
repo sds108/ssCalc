@@ -10,3 +10,8 @@ g++ -Wall main.cpp -lSDL2 -o ssCalc
 
 Run command:
 ./ssCalc
+
+## ToDos
+- Make Equation Parser
+- Make Classes for everything
+- Add SDL_Event's (Let's keep this project relatively simple and mostly CL based)
