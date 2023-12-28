@@ -3,3 +3,10 @@ Inspired by the website Desmos, this project aims to outperform Desmos in some w
 
 ### Why not use MatLab?
 Because it isn't as fun as making your own calculator.
+
+## Usage
+Compile command:
+g++ -Wall main.cpp -lSDL2 -o ssCalc
+
+Run command:
+./ssCalc
