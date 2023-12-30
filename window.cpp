@@ -36,12 +36,12 @@ void calcWindow::resizeWindow (int width, int height) {
 }
 
 // Quit Call
-int calcWindow::quitWindow () {
+bool calcWindow::quitWindow () {
 	if (renderer != NULL) SDL_DestroyRenderer(renderer);
 	if (window != NULL) SDL_DestroyWindow(window);
 	
-	if (renderer == NULL && window == NULL) return 1;
-	else return 0;
+	if (renderer == NULL && window == NULL) return true;
+	else return false;
 }
 
 void calcWindow::window_Init () {

@@ -21,7 +21,7 @@ class calcWindow {
 		void resizeWindow(int width, int height);
 		
 		// Quit Call
-		int quitWindow();
+		bool quitWindow();
 	
 		// Window clear frame
 		void clearFrame();
