@@ -40,6 +40,7 @@ bool calcWindow::quitWindow () {
 	if (renderer != NULL) SDL_DestroyRenderer(renderer);
 	if (window != NULL) SDL_DestroyWindow(window);
 	
+  // Return if successfully freed the memory
 	if (renderer == NULL && window == NULL) return true;
 	else return false;
 }
